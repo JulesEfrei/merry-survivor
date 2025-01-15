@@ -9,11 +9,6 @@ public class SpawnManager : MonoBehaviour
 
     private List<GameObject> activeEnemies = new List<GameObject>();
 
-    void Start()
-    {
-        SpawnEnemies(0);
-    }
-
     public void SpawnEnemies(int round)
     {
         int enemyCount = enemiesPerRound + round; // Augmenter le nombre d'ennemis chaque manche
