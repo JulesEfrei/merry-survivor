@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Merry Survivor.sln"
+    "dotnet.defaultSolution": "merry-survivor.sln"
 }
