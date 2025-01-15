@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 6075975974933568966}
   - component: {fileID: 6075975974933568965}
   - component: {fileID: 6075975974933568964}
-  - component: {fileID: 8562816582052740257}
+  - component: {fileID: 4371632391126462124}
   m_Layer: 0
   m_Name: L
   m_TagString: Untagged
@@ -312,7 +312,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.19095576, y: 3}
   m_EdgeRadius: 0
---- !u!114 &8562816582052740257
+--- !u!114 &4371632391126462124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,12 +321,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6075975974933568967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OverrideArea: 1
+  m_Size: {x: 0.22714001, y: 3.0197875, z: 4}
+  m_Center: {x: -0.00659582, y: 1.5111829, z: 0}
   m_Area: 1
-  m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &6075975974975622418
 GameObject:
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 6075975975660753995}
   - component: {fileID: 6075975975660753994}
   - component: {fileID: 6075975975660753993}
-  - component: {fileID: 5746164635522401342}
+  - component: {fileID: 6863559339855383058}
   m_Layer: 0
   m_Name: R
   m_TagString: Untagged
@@ -499,7 +499,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.18677002, y: 3}
   m_EdgeRadius: 0
---- !u!114 &5746164635522401342
+--- !u!114 &6863559339855383058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -508,12 +508,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6075975975660753996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OverrideArea: 1
+  m_Size: {x: 0.23373604, y: 2.9802122, z: 4}
+  m_Center: {x: -0.009893894, y: 1.4913952, z: 0}
   m_Area: 1
-  m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &6075975976084253374
 GameObject:
