@@ -42,7 +42,6 @@ public class EnemyController : MonoBehaviour
                 distance = curDistance;
             }
         }
-        print(closest);
         return closest;
     }
 }

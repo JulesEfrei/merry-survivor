@@ -9,6 +9,7 @@ namespace Cainos.PixelArtTopDown_Basic
         public float speed;
 
         private Animator animator;
+        public GameObject weaponPrefab;
 
         private void Start()
         {
@@ -41,10 +42,24 @@ namespace Cainos.PixelArtTopDown_Basic
                 animator.SetInteger("Direction", 0);
             }
 
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Instantiate(weaponPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            }
+
             dir.Normalize();
             animator.SetBool("IsMoving", dir.magnitude > 0);
 
             GetComponent<Rigidbody2D>().linearVelocity = speed * dir;
+        }
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                // Logique pour attaquer le joueur
+                Debug.Log("Player hit!");
+            }
         }
     }
 }
