@@ -7,9 +7,9 @@ public class UIManager : MonoBehaviour
     public Text enemiesRemainingText;
     public Text currentRoundText;
 
-    private int playerHealth = 100;
+    private float playerHealth = 100;
 
-    public void UpdatePlayerHealth(int health)
+    public void UpdatePlayerHealth(float health)
     {
         playerHealth = health;
         playerHealthText.text = "Health: " + playerHealth;

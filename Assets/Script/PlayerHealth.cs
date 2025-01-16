@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public int health = 100;
+    public float health = 100;
     private UIManager uiManager;
 
     void Start()
@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
         uiManager.UpdatePlayerHealth(health);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
@@ -37,7 +37,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(1);
+            EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+            TakeDamage(enemy.attack);
         }
     }
 }

@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 
     public int health = 1;
     public float speed = 5f;
+    public float attack = 5;
+    public bool isFlying = false;
 
     void Start()
     {
@@ -25,7 +27,15 @@ public class EnemyController : MonoBehaviour
 
         if (player != null)
         {
-            agent.SetDestination(player.transform.position);
+            if (isFlying == false)
+            {
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                Vector3 direction = (player.transform.position - this.gameObject.transform.position).normalized;
+                this.gameObject.transform.position += direction * speed * Time.deltaTime;
+            }
         }
         else
         {
