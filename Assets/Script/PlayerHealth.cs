@@ -1,39 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
 
-    public int hp = 2;
-    public GameObject gameOverUI;
+    public int health = 100;
+    private UIManager uiManager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        uiManager = FindObjectOfType<UIManager>();
+        uiManager.UpdatePlayerHealth(health);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        print(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Enemy")
+        health -= damage;
+        if (health <= 0)
         {
-            Destroy(collision.gameObject);
+            health = 0;
+            Die();
+        }
 
-            this.hp -= 1;
+        uiManager.UpdatePlayerHealth(health);
+    }
 
-            if (this.hp <= 0)
-            {
-                Destroy(this.gameObject);
-                //this.gameOverUI.SetActive(true);
-            }
+    private void Die()
+    {
+        Destroy(this.gameObject);
+        SceneManager.LoadScene("GameOverScene");
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(1);
         }
     }
 }

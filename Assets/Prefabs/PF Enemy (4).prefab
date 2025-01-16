@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1816818986577279556}
   m_Layer: 0
   m_Name: PF Enemy (4)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,6 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5760206907392518941}
   player: {fileID: 0}
+  health: 1
+  speed: 2
 --- !u!195 &5760206907392518941
 NavMeshAgent:
   m_ObjectHideFlags: 0

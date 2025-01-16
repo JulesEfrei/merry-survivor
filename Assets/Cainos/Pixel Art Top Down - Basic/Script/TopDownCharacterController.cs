@@ -53,13 +53,5 @@ namespace Cainos.PixelArtTopDown_Basic
             GetComponent<Rigidbody2D>().linearVelocity = speed * dir;
         }
 
-        void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                // Logique pour attaquer le joueur
-                Debug.Log("Player hit!");
-            }
-        }
     }
 }

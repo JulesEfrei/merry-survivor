@@ -9,9 +9,14 @@ public class SpawnManager : MonoBehaviour
 
     private List<GameObject> activeEnemies = new List<GameObject>();
 
+    public int baseEnemyHealth = 1;
+    public float baseEnemySpeed = 2f;
+
     public void SpawnEnemies(int round)
     {
-        int enemyCount = enemiesPerRound + round; // Augmenter le nombre d'ennemis chaque manche
+        int enemyCount = enemiesPerRound + round;
+        int enemyHealth = baseEnemyHealth + round;
+        float enemySpeed = baseEnemySpeed + round * 0.5f;
 
         for (int i = 0; i < enemyCount; i++)
         {
@@ -30,6 +35,10 @@ public class SpawnManager : MonoBehaviour
                 enemyRenderer.sortingLayerName = LayerMask.LayerToName(spawnPoint.gameObject.layer);
             }
 
+            EnemyController enemyController = newEnemy.GetComponent<EnemyController>();
+            enemyController.health = enemyHealth;
+            enemyController.speed = enemySpeed;
+
             activeEnemies.Add(newEnemy);
         }
     }
@@ -41,5 +50,11 @@ public class SpawnManager : MonoBehaviour
             if (enemy != null) Destroy(enemy);
         }
         activeEnemies.Clear();
+    }
+
+    public int ActiveEnemiesCount()
+    {
+        activeEnemies.RemoveAll(enemy => enemy == null);
+        return activeEnemies.Count;
     }
 }

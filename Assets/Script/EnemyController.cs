@@ -1,47 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-
     public NavMeshAgent agent;
-
     public GameObject player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int health = 1;
+    public float speed = 5f;
+
     void Start()
     {
-        var agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        player = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        player = FindClosestPlayer();
-        agent.SetDestination(player.gameObject.transform.position);
+        agent.speed = speed;
+
+        if (player != null)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            player = GameObject.FindWithTag("Player");
+        }
     }
 
-    public GameObject FindClosestPlayer()
+    public void TakeDamage(int damage)
     {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Player");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
+        health -= damage;
+        if (health <= 0)
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = go;
-                distance = curDistance;
-            }
+            Die();
         }
-        return closest;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
