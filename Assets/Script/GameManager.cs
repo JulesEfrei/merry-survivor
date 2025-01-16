@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DisplayBonusSelection()
     {
-        // Activer le panel de sélection
         bonusSelectionPanel.SetActive(true);
         GenerateBonusButtons();
 
@@ -52,32 +51,28 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        // Cacher le panel de sélection
         bonusSelectionPanel.SetActive(false);
 
         if (!selectionMade)
         {
             Debug.Log("Time expired, starting next round automatically.");
+            StartNextRound();
         }
 
-        StartNextRound();
     }
 
     private void GenerateBonusButtons()
     {
-        // Supprimer les anciens boutons
         foreach (Transform child in buttonParent)
         {
             Destroy(child.gameObject);
         }
 
-        // Générer 3 boutons aléatoires
         for (int i = 0; i < 3; i++)
         {
             int randomIndex = Random.Range(0, bonusPrefabs.Length);
             GameObject bonusButton = Instantiate(bonusPrefabs[randomIndex], buttonParent);
 
-            // Ajouter un listener pour le bouton
             Button button = bonusButton.GetComponent<Button>();
             if (button != null)
             {
@@ -90,22 +85,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Bonus selected: " + bonus.name);
 
-        // Appliquer l'effet du bonus ici (par exemple, augmenter les stats du joueur)
-        ApplyBonusEffect(bonus);
-
         selectionMade = true;
 
-        // Cacher le panel de sélection
         bonusSelectionPanel.SetActive(false);
 
-        // Lancer la prochaine manche immédiatement
         StartNextRound();
-    }
-
-    private void ApplyBonusEffect(GameObject bonus)
-    {
-        // Implémentez ici les effets des bonus
-        // Exemple : augmenter la santé, les dégâts, etc.
     }
 
     public void StartNextRound()
