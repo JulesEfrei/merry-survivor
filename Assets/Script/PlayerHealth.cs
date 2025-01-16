@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
-
 public class PlayerHealth : MonoBehaviour
 {
 
     public float health = 100;
     private UIManager uiManager;
+    public Image damageImage;
+    public float fadeDuration = 0.5f;
 
     void Start()
     {
@@ -25,6 +26,12 @@ public class PlayerHealth : MonoBehaviour
         }
 
         uiManager.UpdatePlayerHealth(health);
+
+        // Affiche l'image de dégâts
+        damageImage.DOFade(1, fadeDuration).OnComplete(() =>
+        {
+            damageImage.DOFade(0, fadeDuration);
+        });
     }
 
     private void Die()
