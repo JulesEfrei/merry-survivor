@@ -7,12 +7,13 @@ public class UIManager : MonoBehaviour
     public Text enemiesRemainingText;
     public Text currentRoundText;
 
-    private float playerHealth = 100;
 
     public void UpdatePlayerHealth(float health)
     {
-        playerHealth = health;
-        playerHealthText.text = "Health: " + playerHealth;
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerHealth playerController = player.GetComponent<PlayerHealth>();
+
+        playerHealthText.text = health + "/" + playerController.baseHealth;
     }
 
     public void UpdateEnemiesRemaining(int enemiesRemaining)

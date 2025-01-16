@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
 
+    public float baseHealth = 100;
     public float health = 100;
     private UIManager uiManager;
 
