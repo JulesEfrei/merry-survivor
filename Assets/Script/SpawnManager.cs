@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
 
             EnemyController enemyController = newEnemy.GetComponent<EnemyController>();
 
-            int enemyHealth = enemyController.health + round;
+            float enemyHealth = enemyController.health + round;
             float enemySpeed = enemyController.speed + round * 0.5f;
             float enemyAttack = enemyController.attack + round * 0.5f;
 

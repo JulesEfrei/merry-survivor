@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
 
-    public int health = 1;
+    public float health = 1;
     public float speed = 5f;
     public float attack = 5;
     public bool isFlying = false;
