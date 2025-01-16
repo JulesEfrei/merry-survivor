@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
 
@@ -10,6 +11,10 @@ public class PlayerHealth : MonoBehaviour
     private UIManager uiManager;
     public Image damageImage;
     public float fadeDuration = 0.5f;
+    public float resetDelay = 2f;
+
+    private float currentAlpha = 0f;
+    private Coroutine resetCoroutine;
 
     void Start()
     {
@@ -28,11 +33,30 @@ public class PlayerHealth : MonoBehaviour
 
         uiManager.UpdatePlayerHealth(health);
 
-        // Affiche l'image de dégâts
-        damageImage.DOFade(1, fadeDuration).OnComplete(() =>
+        if (damageImage != null)
         {
-            damageImage.DOFade(0, fadeDuration);
-        });
+            currentAlpha += 0.1f;
+            currentAlpha = Mathf.Clamp(currentAlpha, 0f, 1f);
+            damageImage.DOFade(currentAlpha, fadeDuration);
+
+            if (resetCoroutine != null)
+            {
+                StopCoroutine(resetCoroutine);
+            }
+            resetCoroutine = StartCoroutine(ResetOpacityAfterDelay());
+        }
+        else
+        {
+            Debug.LogWarning("damageImage n'est pas assignée dans l'inspecteur.");
+        }
+    }
+
+    private IEnumerator ResetOpacityAfterDelay()
+    {
+        yield return new WaitForSeconds(resetDelay);
+
+        currentAlpha = 0f;
+        damageImage.DOFade(currentAlpha, fadeDuration);
     }
 
     private void Die()
