@@ -1,47 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-
     public NavMeshAgent agent;
-
     public GameObject player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float health = 1;
+    public float speed = 5f;
+    public float attack = 5;
+    public bool isFlying = false;
+
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        player = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        player = FindClosestPlayer();
-        agent.SetDestination(player.gameObject.transform.position);
-    }
+        agent.speed = speed;
 
-    public GameObject FindClosestPlayer()
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Player");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
+        if (player != null)
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            if (isFlying == false)
             {
-                closest = go;
-                distance = curDistance;
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                Vector3 direction = (player.transform.position - this.gameObject.transform.position).normalized;
+                this.gameObject.transform.position += direction * speed * Time.deltaTime;
             }
         }
-        print(closest);
-        return closest;
+        else
+        {
+            player = GameObject.FindWithTag("Player");
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
