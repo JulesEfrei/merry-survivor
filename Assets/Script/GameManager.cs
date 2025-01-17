@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
     {
         currentRound++;
         uiManager.UpdateCurrentRound(currentRound);
+        uiManager.UpdatePlayerHealth(GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().health);
         Debug.Log("Starting Round: " + currentRound);
 
         spawnManager.SpawnEnemies(currentRound);

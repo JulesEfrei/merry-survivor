@@ -8,6 +8,6 @@ public class AttackPerks : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         TopDownCharacterController playerController = player.GetComponent<TopDownCharacterController>();
 
-        playerController.attackRatio = playerController.attackRatio + (playerController.attackRatio * (float)0.2);
+        playerController.attackRatio = playerController.attackRatio + (playerController.attackRatio * (float)0.3);
     }
 }

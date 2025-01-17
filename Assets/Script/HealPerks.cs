@@ -7,6 +7,6 @@ public class HealPerks : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         PlayerHealth playerController = player.GetComponent<PlayerHealth>();
 
-        playerController.health = playerController.health + (playerController.health * (float)0.2);
+        playerController.health = playerController.baseHealth + (playerController.baseHealth * (float)0.4);
     }
 }
