@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
-    public Text roundsText; // Associez le texte dans l'inspecteur.
-
+    public Text roundsText;
     private void Start()
     {
         //int roundsPlayed = PlayerPrefs.GetInt("RoundsPlayed", 0);

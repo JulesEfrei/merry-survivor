@@ -46,7 +46,7 @@ public class FireballShot : MonoBehaviour
             }
 
         }
-        else if (collision.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("weapon"))
         {
 
             //Destroy(gameObject);

@@ -74,27 +74,36 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void ShootFireball()
         {
+            //Position
             Vector2 fireballPositionOffset = Vector2.zero;
 
-            if (Mathf.Abs(lastMovementDirection.x) > Mathf.Abs(lastMovementDirection.y))
+            //Direction
+            Vector2 fireballDirection = lastMovementDirection;
+
+            if (Input.GetKey(KeyCode.O))
             {
-                fireballPositionOffset = new Vector2(
-                    lastMovementDirection.x > 0 ? 0.7f : -0.7f,
-                    0f
-                );
+                fireballDirection = Vector2.up;
             }
-            else
+            else if (Input.GetKey(KeyCode.K))
             {
-                fireballPositionOffset = new Vector2(
-                    0f,
-                    lastMovementDirection.y > 0 ? 1f : -0.2f
-                );
+                fireballDirection = Vector2.left;
+            }
+            else if (Input.GetKey(KeyCode.L))
+            {
+                fireballDirection = Vector2.down;
+            }
+            else if (Input.GetKey(KeyCode.M))
+            {
+                fireballDirection = Vector2.right;
             }
 
+            fireballPositionOffset = fireballDirection.normalized * 0.7f;
             Vector2 fireballPosition = (Vector2)this.gameObject.transform.position + fireballPositionOffset;
 
+            //Instanciate
             GameObject fireball = Instantiate(fireballPrefab, fireballPosition, Quaternion.identity);
 
+            //Fix layer
             SpriteRenderer fireballRenderer = fireball.GetComponent<SpriteRenderer>();
             if (fireballRenderer != null)
             {
@@ -104,7 +113,7 @@ namespace Cainos.PixelArtTopDown_Basic
             FireballShot fireballShot = fireball.GetComponent<FireballShot>();
             if (fireballShot != null)
             {
-                fireballShot.SetDirection(lastMovementDirection);
+                fireballShot.SetDirection(fireballDirection.normalized);
             }
         }
 
